@@ -8,29 +8,8 @@
 #include <vector>
 #include <iterator>
 #include <numeric>
+#include <algorithm>
 
-
-//for now, have function up top. in future, have different files
-//maximum data in the vector
-// if you pass by const, you want to pass by reference as well
-double heaviest(const std::vector<double>& data) {
-    
-    auto max = data[0];
-    for (const auto item : data) {
-        if (item > max)
-            max = item;
-    }
-
-    
-    return max;
-}
-
-//average of the vector
-double avg(const std::vector<double>& data) {
-
-  
-    return std::accumulate(data.begin(), data.end(), 0.0)/data.size();
-}
 
 int main() {
 
@@ -38,10 +17,10 @@ int main() {
     std::vector<double> rainfall{std::istream_iterator<double>(std::cin), std::istream_iterator<double>()};
 
     // calculate heaviest rainfall
-    auto max = heaviest(rainfall);
+    auto max = *std::max_element(rainfall.begin(), rainfall.end());
     
     // calculate average rainfall
-    auto average = avg(rainfall);
+    auto average = std::accumulate(rainfall.begin(), rainfall.end(), 0.0)/ rainfall.size();
 
     // output rainfall report
     std::cout << "Average Hourly Rainfall: " << average << " hundreds of inches" << '\n';
