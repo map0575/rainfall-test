@@ -6,6 +6,9 @@
 
 #include <iostream>
 #include <vector>
+#include <iterator>
+#include <numeric>
+
 
 //for now, have function up top. in future, have different files
 //maximum data in the vector
@@ -13,7 +16,7 @@
 double heaviest(const std::vector<double>& data) {
     
     auto max = data[0];
-    for (const auto item : data {
+    for (const auto item : data) {
         if (item > max)
             max = item;
     }
@@ -25,13 +28,9 @@ double heaviest(const std::vector<double>& data) {
 //average of the vector
 double avg(const std::vector<double>& data) {
   
-    auto total = 0;
-    for (const auto item : data) {
-        total += item;
-    }
-
+    auto total = std::accumulate(data.begin(), data.end(), 0.0);
   
-  return total/data.size();
+    return total/data.size();
 }
 
 int main() {
