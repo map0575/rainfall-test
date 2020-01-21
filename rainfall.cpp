@@ -27,10 +27,9 @@ double heaviest(const std::vector<double>& data) {
 
 //average of the vector
 double avg(const std::vector<double>& data) {
+
   
-    auto total = std::accumulate(data.begin(), data.end(), 0.0);
-  
-    return total/data.size();
+    return std::accumulate(data.begin(), data.end(), 0.0)/data.size();
 }
 
 int main() {
